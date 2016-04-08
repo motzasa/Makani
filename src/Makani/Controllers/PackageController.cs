@@ -1,8 +1,10 @@
 ﻿using Makani.Models;
+using Makani.ViewModels;
 using Microsoft.AspNet.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace Makani.Controllers
@@ -25,9 +27,16 @@ namespace Makani.Controllers
         }
 
         [HttpPost("")]
-        public JsonResult Post([FromBody]Package package)
+        public JsonResult Post([FromBody]PackageViewModel package)
         {
-            return Json(true);
+            if(ModelState.IsValid)
+            {
+                Response.StatusCode = (int) HttpStatusCode.Created;
+                return Json(true);
+            }
+
+            Response.StatusCode = (int) HttpStatusCode.BadRequest;
+            return Json(new { Message = "Failed", ModelState = ModelState });
         }
     }
 }
