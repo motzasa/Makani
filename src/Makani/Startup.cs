@@ -10,6 +10,8 @@ using Makani.Models;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.PlatformAbstractions;
 using Newtonsoft.Json.Serialization;
+using AutoMapper;
+using Makani.ViewModels;
 
 namespace Makani
 {
@@ -39,6 +41,8 @@ namespace Makani
                 .AddSqlServer()
                 .AddDbContext<MakaniContext>();
 
+            services.AddLogging();
+
             services.AddScoped<MakaniRepository>();
         }
 
@@ -46,6 +50,13 @@ namespace Makani
         public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles();
+
+            Mapper.Initialize(config =>
+            {
+                config.CreateMap<Package, PackageViewModel>().ReverseMap();
+                config.CreateMap<City, CityViewModel>().ReverseMap();
+            });
+
             app.UseMvcWithDefaultRoute();
         }
 

@@ -16,12 +16,22 @@ namespace Makani.Migrations
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Makani.Models.City", b =>
+                {
+                    b.Property<int>("CityId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Name");
+
+                    b.Property<int?>("PackagePackageId");
+
+                    b.HasKey("CityId");
+                });
+
             modelBuilder.Entity("Makani.Models.Package", b =>
                 {
                     b.Property<int>("PackageId")
                         .ValueGeneratedOnAdd();
-
-                    b.Property<string>("Cities");
 
                     b.Property<string>("Code");
 
@@ -41,8 +51,6 @@ namespace Makani.Migrations
 
                     b.Property<string>("DurationDays");
 
-                    b.Property<string>("Photos");
-
                     b.Property<decimal>("Price");
 
                     b.Property<string>("Rate");
@@ -54,6 +62,34 @@ namespace Makani.Migrations
                     b.Property<decimal>("TotalPrice");
 
                     b.HasKey("PackageId");
+                });
+
+            modelBuilder.Entity("Makani.Models.Photo", b =>
+                {
+                    b.Property<int>("PhotoId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("Description");
+
+                    b.Property<int?>("PackagePackageId");
+
+                    b.Property<string>("Path");
+
+                    b.HasKey("PhotoId");
+                });
+
+            modelBuilder.Entity("Makani.Models.City", b =>
+                {
+                    b.HasOne("Makani.Models.Package")
+                        .WithMany()
+                        .HasForeignKey("PackagePackageId");
+                });
+
+            modelBuilder.Entity("Makani.Models.Photo", b =>
+                {
+                    b.HasOne("Makani.Models.Package")
+                        .WithMany()
+                        .HasForeignKey("PackagePackageId");
                 });
         }
     }

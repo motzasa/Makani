@@ -14,6 +14,8 @@ namespace Makani.Models
         }
 
         public DbSet<Package> Packages { get; set; }
+        public DbSet<City> Cities { get; set; }
+        public DbSet<Photo> Photos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

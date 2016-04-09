@@ -1,7 +1,7 @@
 ﻿{
 	"Data": {
 		"MakaniConnection": {
-			"ConnectionString": "Server=.;Database=Makani;Trusted_Connection=True;"
+			"ConnectionString": "Server=(localdb)\\MSSQLLocalDB;Database=Makani;Trusted_Connection=True;"
 		}
 	}
 }

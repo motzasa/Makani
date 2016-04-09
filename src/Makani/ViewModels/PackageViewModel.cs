@@ -15,7 +15,6 @@ namespace Makani.ViewModels
         public string Rate { get; set; }
         public string DurationCategory { get; set; }
         public string DurationDays { get; set; }
-        public string Cities { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }
         public string TTD { get; set; }
@@ -24,5 +23,7 @@ namespace Makani.ViewModels
         [Required]
         public string Code { get; set; }
         public string Photos { get; set; }
+
+        public IEnumerable<CityViewModel> Cities { get; set; }
     }
 }
