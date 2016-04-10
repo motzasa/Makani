@@ -12,6 +12,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 using Newtonsoft.Json.Serialization;
 using AutoMapper;
 using Makani.ViewModels;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Makani
 {
@@ -41,6 +42,13 @@ namespace Makani
                 .AddSqlServer()
                 .AddDbContext<MakaniContext>();
 
+            services.AddIdentity<MakaniUser, IdentityRole>(config =>
+            {
+                config.User.RequireUniqueEmail = true;
+                config.Password.RequiredLength = 8;
+                config.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";
+            });
+
             services.AddLogging();
 
             services.AddScoped<MakaniRepository>();
@@ -50,6 +58,8 @@ namespace Makani
         public void Configure(IApplicationBuilder app)
         {
             app.UseStaticFiles();
+
+            app.UseIdentity();
 
             Mapper.Initialize(config =>
             {

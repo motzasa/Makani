@@ -26,7 +26,7 @@ namespace Makani.Controllers
         [HttpGet("")]
         public JsonResult Get()
         {
-            var result = Mapper.Map<IEnumerable<PackageViewModel>>(_repo.GetAllPackages());
+            var result = Mapper.Map<IEnumerable<PackageViewModel>>(_repo.GetAllPackagesWithCities());
             return Json(result);
         }
 

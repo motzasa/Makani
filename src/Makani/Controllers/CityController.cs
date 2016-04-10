@@ -54,7 +54,7 @@ namespace Makani.Controllers
                 {
                     var newCity = Mapper.Map<City>(cityVm);
 
-                    _repo.AddCity(newCity);
+                    _repo.AddCity(packageName, newCity);
 
                     if(_repo.SaveAll())
                     {

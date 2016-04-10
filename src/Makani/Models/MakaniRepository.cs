@@ -20,6 +20,13 @@ namespace Makani.Models
             return _context.Packages.ToList();
         }
 
+        public IEnumerable<Package> GetAllPackagesWithCities()
+        {
+            return _context.Packages
+                .Include(p => p.Cities)
+                .ToList();
+        }
+
         public void AddPackage(Package newPackage)
         {
             _context.Add(newPackage);
@@ -32,8 +39,10 @@ namespace Makani.Models
                 .FirstOrDefault();
         }
 
-        public void AddCity(City newCity)
+        public void AddCity(string packageName, City newCity)
         {
+            var thePackage = GetPackageByName(packageName);
+            thePackage.Cities.Add(newCity);
             _context.Cities.Add(newCity);
         }
 

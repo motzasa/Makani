@@ -8,9 +8,10 @@ using Makani.Models;
 namespace Makani.Migrations
 {
     [DbContext(typeof(MakaniContext))]
-    partial class MakaniContextModelSnapshot : ModelSnapshot
+    [Migration("20160410201742_Identity")]
+    partial class Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("ProductVersion", "7.0.0-rc1-16348")

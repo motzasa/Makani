@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Data.Entity;
 
 namespace Makani.Models
 {
-    public class MakaniContext : DbContext
+    public class MakaniContext : IdentityDbContext<MakaniUser>
     {
         public MakaniContext()
         {
