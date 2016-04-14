@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Makani.Models;
 using Makani.ViewModels;
+using Microsoft.AspNet.Authorization;
 using Microsoft.AspNet.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -11,6 +12,7 @@ using System.Threading.Tasks;
 
 namespace Makani.Controllers
 {
+    [Authorize]
     [Route("api/packages")]
     public class PackageController : Controller
     {
