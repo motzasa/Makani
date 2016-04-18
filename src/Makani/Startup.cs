@@ -81,7 +81,14 @@ namespace Makani
                 config.CreateMap<City, CityViewModel>().ReverseMap();
             });
 
-            app.UseMvcWithDefaultRoute();
+            app.UseMvc(config =>
+            {
+                config.MapRoute(
+                    name: "Default",
+                    template: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "Makani", action = "Index" }
+                    );
+            });
         }
 
         // Entry point for the application.
